@@ -30,7 +30,7 @@ go run . artisan make:package socket
 ```
 #### 4.2、使用包
 将扩展覆盖到扩展包中
-#### 4.3、路由说明 routers/routers.go
+#### 4.3、路由说明 routers/routers.go,路由中间件自行添加，本例中使用了jwt中间件
 ```go
 facades.Route().Prefix("/api").Middleware(middleware.Jwt()).Group(func(router route.Router) {
     registerController := register.NewRegisterController()
