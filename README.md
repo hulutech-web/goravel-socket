@@ -1,6 +1,6 @@
 # Socket
-#### 使用说明
-#### 1、在goravel项目中的config目录下的app.go文件中的providers数组中添加
+### 使用说明
+### 1、在goravel项目中的config目录下的app.go文件中的providers数组中添加
 ```go
 import Socket "goravel/packages/socket"
 ```
@@ -8,7 +8,7 @@ import Socket "goravel/packages/socket"
 ```go
 	&Socket.ServiceProvider{},
 ```
-#### 2、在goravel项目中的router目录下的web.go文件中添加
+### 2、在goravel项目中的router目录下的web.go文件中添加
 ```go
 import 	"goravel/packages/socket/servers"
 func Web() {
@@ -17,13 +17,13 @@ facades.Route().Get("/ws", websocketHandler.Run)
 go servers.Manager.Start()
 }
 ```
-#### 3、访问路径/ws
+### 3、访问路径/ws
 [//]: # 业务流程()
 1、注册大区，systemId,不能重复，随机值，需缓存
 2、连接ws,需要携带systemId头信息，连接成功后返回clientId，缓存至本地（这个时候会出现：xxx上线了，xxx下线了），每上线一个人将该人的clientId存入本地缓存，方便随时根据client进行发送消息
 3、绑定客户端到分组（房间），对战双方都需要绑定，其他业务逻辑自行研究
 
-#### 4、集成操作
+### 4、集成操作
 #### 4.1、创建一个包
 ```go
 go run . artisan make:package socket
@@ -76,7 +76,7 @@ type inputData struct {
     Extend   string `json:"extend"` // 拓展字段，方便业务存储数据
 }
 ```
-#### 4.4.4、获取在线用户列表
+##### 4.4.4、获取在线用户列表
 ```go
 type inputData struct {
 	GroupName string      `json:"groupName" validate:"required"`
@@ -86,7 +86,7 @@ type inputData struct {
 }
 
 ```
-#### 4.4.5、发送消息给指定的客户端
+##### 4.4.5、发送消息给指定的客户端
 ```go
 type inputData struct {
 	ClientId   string `json:"clientId" validate:"required"`
@@ -96,7 +96,7 @@ type inputData struct {
 	Data       string `json:"data"`
 }
 ```
-#### 4.4.6、发送消息给指定的多个客户端
+##### 4.4.6、发送消息给指定的多个客户端
 ```go
 type inputData struct {
 	ClientIds  []string `json:"clientIds" validate:"required"`
@@ -106,7 +106,7 @@ type inputData struct {
 	Data       string   `json:"data"`
 }
 ```
-#### 4.4.7、发送消息给指定的分组
+##### 4.4.7、发送消息给指定的分组
 ```go
 type inputData struct {
 	SendUserId string `json:"sendUserId"`
@@ -116,11 +116,13 @@ type inputData struct {
 	Data       string `json:"data"`
 }
 ```
-#### 4.4.8、关闭客户端
+##### 4.4.8、关闭客户端
 ```go
 type inputData struct {
 	ClientId string `json:"clientId" validate:"required"`
 }
 ```
-#### 5、版权说明
+### 5、使用场景
+聊天室、对战游戏、直播间、在线教育、在线会议、在线答题、在线考试、在线投票、在线抢答、在线抽奖、在线问卷、在线调查、在线评选、在线选举、在线投票等实时通信场景。
+### 6、版权说明
 代码中包含其他作者的代码，其包含的代码版权归原作者所有，如有侵权，请联系作者删除
