@@ -33,25 +33,94 @@ go run . artisan make:package socket
 #### 4.3、路由说明 routers/routers.go
 ```go
 facades.Route().Prefix("/api").Middleware(middleware.Jwt()).Group(func(router route.Router) {
-		registerController := register.NewRegisterController()
-		sendToClientController := send2client.NewRegisterController()
-		sendToClientsController := send2clients.NewSend2ClientsController()
-		sendToGroupController := send2group.NewSend2GroupController()
-		bindToGroupController := bind2group.NewBind2GroupController()
-		getOnlinelistController := getonlinelist.NewGetOnlineController()
-		closeClientController := closeclient.NewCloseClientController()
-		getAllGroupHandler := getallgroup.NewGetAllGroupController()
+    registerController := register.NewRegisterController()
+    sendToClientController := send2client.NewRegisterController()
+    sendToClientsController := send2clients.NewSend2ClientsController()
+    sendToGroupController := send2group.NewSend2GroupController()
+    bindToGroupController := bind2group.NewBind2GroupController()
+    getOnlinelistController := getonlinelist.NewGetOnlineController()
+    closeClientController := closeclient.NewCloseClientController()
+    getAllGroupHandler := getallgroup.NewGetAllGroupController()
 
-		router.Post("/register", registerController.Run) //注册大区
-		router.Post("/send_to_client", sendToClientController.Run) //发送消息给指定的客户端
-		router.Post("/send_to_clients", sendToClientsController.Run) //发送消息给指定的客户端
-		router.Post("/send_to_group", sendToGroupController.Run) //发送消息给指定的分组
-		router.Post("/bind_to_group", bindToGroupController.Run) //绑定客户端到分组
-		router.Post("/get_online_list", getOnlinelistController.Run) //获取在线列表
-		router.Post("/close_client", closeClientController.Run) //关闭客户端
-		router.Post("/get_all_groups", getAllGroupHandler.Run) //获取所有分组
+    router.Post("/register", registerController.Run) //注册大区
+    router.Post("/send_to_client", sendToClientController.Run) //发送消息给指定的客户端
+    router.Post("/send_to_clients", sendToClientsController.Run) //发送消息给指定的客户端
+    router.Post("/send_to_group", sendToGroupController.Run) //发送消息给指定的分组
+    router.Post("/bind_to_group", bindToGroupController.Run) //绑定客户端到分组
+    router.Post("/get_online_list", getOnlinelistController.Run) //获取在线列表
+    router.Post("/close_client", closeClientController.Run) //关闭客户端
+    router.Post("/get_all_groups", getAllGroupHandler.Run) //获取所有分组
 	})
 ```
+#### 4.4、代码编写说明(数据结构)
+##### 4.4.1、注册大区
+```go
+type inputData struct {
+SystemId string `json:"systemId" form:"systemId" validate:"required"`
+}
+```
+##### 4.4.2、绑定分组
+```go
+type inputData struct {
+	ClientId  string `json:"clientId" validate:"required"`
+	GroupName string `json:"groupName" validate:"required"`
+	UserId    string `json:"userId"`
+	Extend    string `json:"extend"` // 拓展字段，方便业务存储数据
+}
+```
+##### 4.4.3、获取分组
+```go
+type inputData struct {
+    ClientId string `json:"clientId" validate:"required"`
+    UserId   string `json:"userId"`
+    Extend   string `json:"extend"` // 拓展字段，方便业务存储数据
+}
+```
+#### 4.4.4、获取在线用户列表
+```go
+type inputData struct {
+	GroupName string      `json:"groupName" validate:"required"`
+	Code      int         `json:"code"`
+	Msg       string      `json:"msg"`
+	Data      interface{} `json:"data"`
+}
 
+```
+#### 4.4.5、发送消息给指定的客户端
+```go
+type inputData struct {
+	ClientId   string `json:"clientId" validate:"required"`
+	SendUserId string `json:"sendUserId"`
+	Code       int    `json:"code"`
+	Msg        string `json:"msg"`
+	Data       string `json:"data"`
+}
+```
+#### 4.4.6、发送消息给指定的多个客户端
+```go
+type inputData struct {
+	ClientIds  []string `json:"clientIds" validate:"required"`
+	SendUserId string   `json:"sendUserId"`
+	Code       int      `json:"code"`
+	Msg        string   `json:"msg"`
+	Data       string   `json:"data"`
+}
+```
+#### 4.4.7、发送消息给指定的分组
+```go
+type inputData struct {
+	SendUserId string `json:"sendUserId"`
+	GroupName  string `json:"groupName" validate:"required"`
+	Code       int    `json:"code"`
+	Msg        string `json:"msg"`
+	Data       string `json:"data"`
+}
+```
+#### 4.4.8、关闭客户端
+```go
+type inputData struct {
+	ClientId string `json:"clientId" validate:"required"`
+}
+```
 #### 5、版权说明
 代码中包含其他作者的代码，其包含的代码版权归原作者所有，如有侵权，请联系作者删除
