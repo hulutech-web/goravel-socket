@@ -52,3 +52,6 @@ facades.Route().Prefix("/api").Middleware(middleware.Jwt()).Group(func(router ro
 		router.Post("/get_all_groups", getAllGroupHandler.Run) //获取所有分组
 	})
 ```
+
+#### 5、版权说明
+代码中包含其他作者的代码，其包含的代码版权归原作者所有，如有侵权，请联系作者删除
