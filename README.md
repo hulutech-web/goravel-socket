@@ -30,3 +30,25 @@ go run . artisan make:package socket
 ```
 #### 4.2、使用包
 将扩展覆盖到扩展包中
+#### 4.3、路由说明 routers/routers.go
+```go
+facades.Route().Prefix("/api").Middleware(middleware.Jwt()).Group(func(router route.Router) {
+		registerController := register.NewRegisterController()
+		sendToClientController := send2client.NewRegisterController()
+		sendToClientsController := send2clients.NewSend2ClientsController()
+		sendToGroupController := send2group.NewSend2GroupController()
+		bindToGroupController := bind2group.NewBind2GroupController()
+		getOnlinelistController := getonlinelist.NewGetOnlineController()
+		closeClientController := closeclient.NewCloseClientController()
+		getAllGroupHandler := getallgroup.NewGetAllGroupController()
+
+		router.Post("/register", registerController.Run) //注册大区
+		router.Post("/send_to_client", sendToClientController.Run) //发送消息给指定的客户端
+		router.Post("/send_to_clients", sendToClientsController.Run) //发送消息给指定的客户端
+		router.Post("/send_to_group", sendToGroupController.Run) //发送消息给指定的分组
+		router.Post("/bind_to_group", bindToGroupController.Run) //绑定客户端到分组
+		router.Post("/get_online_list", getOnlinelistController.Run) //获取在线列表
+		router.Post("/close_client", closeClientController.Run) //关闭客户端
+		router.Post("/get_all_groups", getAllGroupHandler.Run) //获取所有分组
+	})
+```
