@@ -5,7 +5,16 @@
 
 # Socket[详情](https://github.com/hulutech-web/goravel-socket)
 ### 介绍
-goravel的websocket扩展包,方便在goravel项目中集成，扩展提供了方便的websocket常用功能，包含注册systemId,绑定clientId,分组，发送消息到指定分组，发送消息给客户端等，消息中的业务数据开发者按需添加即可；
+[goravel](https://www.goravel.dev/)框架推荐的websocket扩展包。  [链接](https://www.goravel.dev/zh/prologue/packages.html)  
+- 扩展包提供了通用的websocket整体解决方案，适合多场景，go语言的高性能特性，保证了该扩展的高效与性能。  
+- 本扩展旨在快速地在goravel框架中集成使用，通过简单的配置即可搭建出性能强劲，功能丰富的即时通信场景。  
+- 扩展提供了方便的websocket常用功能，包含注册systemId（系统id）,绑定clientId（客户端ID),分组(客户端分组)，发送消息到指定分组，发送消息给客户端等，发送消息到系统,消息中的业务数据开发者按需添加即可；
+- 概念须知:
+  - systemId:系统id，用于区分不同系统，每个系统拥有一个systemId,系统id不能重复，任意值.
+  - groupId:分组id，用于区分不同分组，每个分组拥有一个groupId,分组id不能重复，任意值.
+  - clientId:客户端id，用于区分不同客户端，每个客户端拥有一个clientId,且有扩展自动分配.
+  - 关系：系统共三层结构，systemId包含groupId,groupId包含clientId.
+  - 说明：systemId可以有多个，groupId可以有多个，clientId可以有多个。
 ### 使用说明
 ### 1、在goravel项目中的config目录下的app.go文件中的providers数组中添加
 ```go
@@ -62,7 +71,7 @@ facades.Route().Prefix("/api").Middleware(middleware.Jwt()).Group(func(router ro
     router.Post("/get_all_groups", getAllGroupHandler.Run) //获取所有分组
 	})
 ```
-#### 4.4、代码编写说明(数据结构)
+#### 4.4、前端API接口提交规范(数据结构)
 ##### 4.4.1、注册大区
 ```go
 type inputData struct {
@@ -135,4 +144,4 @@ type inputData struct {
 ### 5、使用场景
 聊天室、对战游戏、直播间、在线教育、在线会议、在线答题、在线考试、在线投票、在线抢答、在线抽奖、在线问卷、在线调查、在线评选、在线选举、在线投票等实时通信场景。
 ### 6、版权说明
-代码中包含其他作者的代码，其包含的代码版权归原作者所有，如有侵权，请联系作者删除
+代码中借鉴了其他作者的代码，其包含的代码版权归原作者所有，如有侵权，请联系作者删除
