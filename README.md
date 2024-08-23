@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img src="https://github.com/hulutech-web/goravel-socket/blob/master/images/icon.png?raw=true" width="300" />
+</p>
+
 # Socket[详情](https://github.com/hulutech-web/goravel-socket)
 ### 介绍
 goravel的websocket扩展包,方便在goravel项目中集成，扩展提供了方便的websocket常用功能，包含注册systemId,绑定clientId,分组，发送消息到指定分组，发送消息给客户端等，消息中的业务数据开发者按需添加即可；
