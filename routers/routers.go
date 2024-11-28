@@ -3,19 +3,18 @@ package routers
 import (
 	"github.com/goravel/framework/contracts/route"
 	"github.com/goravel/framework/facades"
-	"goravel/app/http/middleware"
-	"goravel/packages/socket/api/bind2group"
-	"goravel/packages/socket/api/closeclient"
-	"goravel/packages/socket/api/getallgroup"
-	"goravel/packages/socket/api/getonlinelist"
-	"goravel/packages/socket/api/register"
-	"goravel/packages/socket/api/send2client"
-	"goravel/packages/socket/api/send2clients"
-	"goravel/packages/socket/api/send2group"
+	"github.com/hulutech-web/goravel-socket/api/bind2group"
+	"github.com/hulutech-web/goravel-socket/api/closeclient"
+	"github.com/hulutech-web/goravel-socket/api/getallgroup"
+	"github.com/hulutech-web/goravel-socket/api/getonlinelist"
+	"github.com/hulutech-web/goravel-socket/api/register"
+	"github.com/hulutech-web/goravel-socket/api/send2client"
+	"github.com/hulutech-web/goravel-socket/api/send2clients"
+	"github.com/hulutech-web/goravel-socket/api/send2group"
 )
 
 func Init() {
-	facades.Route().Prefix("/api").Middleware(middleware.Jwt()).Group(func(router route.Router) {
+	facades.Route().Prefix("/api").Middleware(Jwt()).Group(func(router route.Router) {
 		registerController := register.NewRegisterController()
 		sendToClientController := send2client.NewRegisterController()
 		sendToClientsController := send2clients.NewSend2ClientsController()
@@ -32,7 +31,7 @@ func Init() {
 		router.Post("/bind_to_group", bindToGroupController.Run)
 		router.Post("/get_online_list", getOnlinelistController.Run)
 		router.Post("/close_client", closeClientController.Run)
-		//@袁浩 新增：获取所有分组
+		//新增：获取所有分组
 		router.Post("/get_all_groups", getAllGroupHandler.Run)
 	})
 }

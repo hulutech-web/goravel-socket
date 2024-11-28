@@ -2,9 +2,9 @@ package servers
 
 import (
 	"github.com/gorilla/websocket"
+	"github.com/hulutech-web/goravel-socket/setting"
+	"github.com/hulutech-web/goravel-socket/tools/util"
 	log "github.com/sirupsen/logrus"
-	"goravel/packages/socket/setting"
-	"goravel/packages/socket/tools/util"
 	"time"
 )
 

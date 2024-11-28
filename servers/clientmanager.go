@@ -3,10 +3,10 @@ package servers
 import (
 	"encoding/json"
 	"errors"
+	"github.com/hulutech-web/goravel-socket/define/retcode"
+	"github.com/hulutech-web/goravel-socket/setting"
+	"github.com/hulutech-web/goravel-socket/tools/util"
 	log "github.com/sirupsen/logrus"
-	"goravel/packages/socket/define/retcode"
-	"goravel/packages/socket/setting"
-	"goravel/packages/socket/tools/util"
 	"sync"
 	"time"
 )

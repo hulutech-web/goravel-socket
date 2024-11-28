@@ -2,10 +2,10 @@ package servers
 
 import (
 	"context"
+	"github.com/hulutech-web/goravel-socket/servers/pb"
+	"github.com/hulutech-web/goravel-socket/setting"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
-	"goravel/packages/socket/servers/pb"
-	"goravel/packages/socket/setting"
 	"sync"
 )
 

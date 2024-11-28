@@ -2,8 +2,8 @@ package socket
 
 import (
 	"github.com/goravel/framework/contracts/foundation"
-	"goravel/packages/socket/routers"
-	"goravel/packages/socket/servers"
+	"github.com/hulutech-web/goravel-socket/routers"
+	"github.com/hulutech-web/goravel-socket/servers"
 )
 
 const Binding = "socket"

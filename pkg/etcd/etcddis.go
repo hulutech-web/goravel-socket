@@ -2,10 +2,10 @@ package etcd
 
 import (
 	"context"
+	"github.com/hulutech-web/goravel-socket/setting"
 	log "github.com/sirupsen/logrus"
 	"go.etcd.io/etcd/api/v3/mvccpb"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"goravel/packages/socket/setting"
 	"time"
 )
 

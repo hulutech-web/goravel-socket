@@ -3,9 +3,9 @@ package servers
 import (
 	"encoding/json"
 	"errors"
-	"goravel/packages/socket/define"
-	"goravel/packages/socket/pkg/etcd"
-	"goravel/packages/socket/tools/util"
+	"github.com/hulutech-web/goravel-socket/define"
+	"github.com/hulutech-web/goravel-socket/pkg/etcd"
+	"github.com/hulutech-web/goravel-socket/tools/util"
 	"sync"
 	"time"
 )

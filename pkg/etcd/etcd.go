@@ -2,9 +2,9 @@ package etcd
 
 import (
 	"context"
+	"github.com/hulutech-web/goravel-socket/setting"
 	log "github.com/sirupsen/logrus"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"goravel/packages/socket/setting"
 	"sync"
 	"time"
 )

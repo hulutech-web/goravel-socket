@@ -5,10 +5,10 @@ import (
 	zhongwen "github.com/go-playground/locales/zh"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/gorilla/websocket"
+	"github.com/hulutech-web/goravel-socket/define/retcode"
 	"github.com/pkg/errors"
 	"gopkg.in/go-playground/validator.v9"
 	zh2 "gopkg.in/go-playground/validator.v9/translations/zh"
-	"goravel/packages/socket/define/retcode"
 	"io"
 	"net/http"
 )

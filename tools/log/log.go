@@ -1,11 +1,11 @@
 package log
 
 import (
+	"github.com/hulutech-web/goravel-socket/setting"
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"github.com/pkg/errors"
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
-	"goravel/packages/socket/setting"
 	"os"
 	"path/filepath"
 	"strings"

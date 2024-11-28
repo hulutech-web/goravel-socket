@@ -2,9 +2,9 @@ package closeclient
 
 import (
 	"github.com/goravel/framework/contracts/http"
-	"goravel/packages/socket/api"
-	"goravel/packages/socket/define/retcode"
-	"goravel/packages/socket/servers"
+	"github.com/hulutech-web/goravel-socket/api"
+	"github.com/hulutech-web/goravel-socket/define/retcode"
+	"github.com/hulutech-web/goravel-socket/servers"
 )
 
 type CloseClientController struct {

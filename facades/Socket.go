@@ -1,8 +1,8 @@
 package facades
 
 import (
-	"goravel/packages/socket"
-	"goravel/packages/socket/contracts"
+	socket "github.com/hulutech-web/goravel-socket"
+	"github.com/hulutech-web/goravel-socket/contracts"
 	"log"
 )
 

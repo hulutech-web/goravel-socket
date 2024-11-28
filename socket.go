@@ -2,12 +2,12 @@ package socket
 
 import (
 	"fmt"
-	"goravel/packages/socket/define"
-	"goravel/packages/socket/pkg/etcd"
-	"goravel/packages/socket/servers"
-	"goravel/packages/socket/setting"
-	"goravel/packages/socket/tools/log"
-	"goravel/packages/socket/tools/util"
+	"github.com/hulutech-web/goravel-socket/define"
+	"github.com/hulutech-web/goravel-socket/pkg/etcd"
+	"github.com/hulutech-web/goravel-socket/servers"
+	"github.com/hulutech-web/goravel-socket/setting"
+	"github.com/hulutech-web/goravel-socket/tools/log"
+	"github.com/hulutech-web/goravel-socket/tools/util"
 	"net"
 )
 

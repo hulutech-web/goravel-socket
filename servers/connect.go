@@ -2,10 +2,10 @@ package servers
 
 import (
 	"github.com/gorilla/websocket"
+	"github.com/hulutech-web/goravel-socket/api"
+	"github.com/hulutech-web/goravel-socket/define/retcode"
+	"github.com/hulutech-web/goravel-socket/tools/util"
 	log "github.com/sirupsen/logrus"
-	"goravel/packages/socket/api"
-	"goravel/packages/socket/define/retcode"
-	"goravel/packages/socket/tools/util"
 	nethttp "net/http"
 
 	"github.com/goravel/framework/contracts/http"

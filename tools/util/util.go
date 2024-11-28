@@ -2,9 +2,9 @@ package util
 
 import (
 	"errors"
+	"github.com/hulutech-web/goravel-socket/setting"
+	"github.com/hulutech-web/goravel-socket/tools/crypto"
 	uuid "github.com/satori/go.uuid"
-	setting "goravel/packages/socket/setting"
-	"goravel/packages/socket/tools/crypto"
 	"strings"
 )
 

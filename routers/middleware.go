@@ -1,12 +1,12 @@
 package routers
 
 import (
-	"goravel/packages/socket/api"
-	"goravel/packages/socket/define"
-	"goravel/packages/socket/define/retcode"
-	"goravel/packages/socket/pkg/etcd"
-	"goravel/packages/socket/servers"
-	"goravel/packages/socket/tools/util"
+	"github.com/hulutech-web/goravel-socket/api"
+	"github.com/hulutech-web/goravel-socket/define"
+	"github.com/hulutech-web/goravel-socket/define/retcode"
+	"github.com/hulutech-web/goravel-socket/pkg/etcd"
+	"github.com/hulutech-web/goravel-socket/servers"
+	"github.com/hulutech-web/goravel-socket/tools/util"
 	"net/http"
 )
 
