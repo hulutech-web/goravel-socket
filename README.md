@@ -5,7 +5,7 @@
 
 # Socket[详情](https://github.com/hulutech-web/goravel-socket)
 ### 介绍
-[goravel](https://www.goravel.dev/)框架推荐的websocket扩展包。  [链接](https://www.goravel.dev/zh/prologue/packages.html)  
+[goravel](https://www.goravel.dev/)框架推荐的websocket扩展包，您的Star是我前进的动力！！！💪  [链接](https://www.goravel.dev/zh/prologue/packages.html)  
 - 扩展包提供了通用的websocket整体解决方案，适合多场景，go语言的高性能特性，保证了该扩展的高效与性能。  
 - 本扩展旨在快速地在goravel框架中集成使用，通过简单的配置即可搭建出性能强劲，功能丰富的即时通信场景。  
 - 扩展提供了方便的websocket常用功能，包含注册systemId（系统id）,绑定clientId（客户端ID),分组(客户端分组)，发送消息到指定分组，发送消息给客户端等，发送消息到系统,消息中的业务数据开发者按需添加即可；
@@ -15,10 +15,14 @@
   - clientId:客户端id，用于区分不同客户端，每个客户端拥有一个clientId,且有扩展自动分配.
   - 关系：系统共三层结构，systemId包含groupId,groupId包含clientId.
   - 说明：systemId可以有多个，groupId可以有多个，clientId可以有多个。
+### 安装方式
+```shell
+go get -u github.com/hulutech-web/goravel-socket
+```
 ### 使用说明
 ### 1、在goravel项目中的config目录下的app.go文件中的providers数组中添加
 ```go
-import Socket "goravel/packages/socket"
+import Socket "github.com/hulutech-web/goravel-socket"
 ```
 在providers数组中添加
 ```go
@@ -26,7 +30,7 @@ import Socket "goravel/packages/socket"
 ```
 ### 2、在goravel项目中的router目录下的web.go文件中添加
 ```go
-import 	"goravel/packages/socket/servers"
+import 	"github.com/hulutech-web/goravel-socket/servers"
 func Web() {
 websocketHandler := &servers.Controller{}
 facades.Route().Get("/ws", websocketHandler.Run)
@@ -39,19 +43,22 @@ go servers.Manager.Start()
 
 2、连接ws,需要携带systemId头信息，连接成功后返回clientId，缓存至本地（这个时候会出现：xxx上线了，xxx下线了），每上线一个人将该人的clientId存入本地缓存，方便随时根据client进行发送消息  
 
-3、绑定客户端到分组（房间），对战双方都需要绑定，其他业务逻辑自行研究
+3、绑定客户端到分组（房间），对战双方都需要绑定，其他业务逻辑自行解析，注意需要将字符串结构为json格式
 
 ### 4、集成操作
-#### 4.1、创建一个包
+#### 4.1、创建一个包，可以支持自己先创建，在下载到本地，也可以直接使用包管理器创建
+直接创建方式
 ```go
-go run . artisan make:package socket
+go run . artisan make:package github.com/hulutech-web/goravel-socket
 ```
 #### 4.2、使用包
-将扩展覆盖到扩展包中  
+可以下载到本地，采用覆盖到扩展包中  
+#### 4.2.1、使用包
+将扩展覆盖到扩展包中
 
 #### 4.3、路由说明，将操作交给前端，通过http方式调用socket提供的api进行与客户端通信，routers/routers.go,路由中间件自行添加，本例中使用了jwt中间件
 ```go
-facades.Route().Prefix("/api").Middleware(middleware.Jwt()).Group(func(router route.Router) {
+facades.Route().Prefix("/api").Middleware(Jwt()).Group(func(router route.Router) {
     registerController := register.NewRegisterController()
     sendToClientController := send2client.NewRegisterController()
     sendToClientsController := send2clients.NewSend2ClientsController()
