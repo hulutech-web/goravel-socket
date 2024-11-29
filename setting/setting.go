@@ -3,9 +3,9 @@ package setting
 import (
 	"flag"
 	"github.com/go-ini/ini"
-	"github.com/goravel/framework/support/path"
 	"log"
 	"net"
+	"path/filepath"
 	"sync"
 )
 
@@ -35,9 +35,9 @@ var GlobalSetting = &global{}
 var cfg *ini.File
 
 func Setup() {
-	configFile := flag.String("c", path.Base("packages/socket/config/app.ini"), "-c"+path.Base("packages/socket/config/app.ini"))
+	defaultConfigPath := filepath.Join("config", "app.ini")
+	configFile := flag.String("c", defaultConfigPath, "指定配置文件的路径，默认为相对路径下的 'config/app.ini'")
 	flag.Parse()
-
 	var err error
 	cfg, err = ini.Load(*configFile)
 
@@ -85,7 +85,6 @@ func getIntranetIp() string {
 			if ipnet.IP.To4() != nil {
 				return ipnet.IP.String()
 			}
-
 		}
 	}
 
