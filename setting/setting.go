@@ -5,6 +5,7 @@ import (
 	"github.com/go-ini/ini"
 	"log"
 	"net"
+	"os"
 	"path/filepath"
 	"sync"
 )
@@ -35,7 +36,11 @@ var GlobalSetting = &global{}
 var cfg *ini.File
 
 func Setup() {
-	defaultConfigPath := filepath.Join("config", "app.ini")
+	currentDir, _ := os.Getwd()
+	//找到上一层路径下的config目录
+	configDir := filepath.Join(currentDir, "../config")
+	//找到文件app.ini
+	defaultConfigPath := filepath.Join(configDir, "app.ini")
 	configFile := flag.String("c", defaultConfigPath, "指定配置文件的路径，默认为相对路径下的 'config/app.ini'")
 	flag.Parse()
 	var err error
