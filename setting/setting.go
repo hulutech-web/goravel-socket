@@ -1,10 +1,12 @@
 package setting
 
 import (
+	"flag"
 	"github.com/go-ini/ini"
-	"github.com/spf13/viper"
 	"log"
 	"net"
+	"path/filepath"
+	"runtime"
 	"sync"
 )
 
@@ -34,16 +36,18 @@ var GlobalSetting = &global{}
 var cfg *ini.File
 
 func Setup() {
+	// 获取当前文件的绝对路径
+	_, currentFilePath, _, _ := runtime.Caller(0)
+	configDir := filepath.Join(filepath.Dir(currentFilePath), "../config")
+
+	// 设置默认配置文件路径
+	defaultConfigFile := filepath.Join(configDir, "app.ini")
+
+	// 命令行参数
+	configFile := flag.String("c", defaultConfigFile, "Path to the configuration file")
+	flag.Parse()
 	var err error
-	viper.SetConfigName("app")
-	viper.AddConfigPath("github.com/hulutech-web/goravel-socket/config")
-	viper.SetConfigType("ini")
-	if err = viper.ReadInConfig(); err != nil {
-		log.Fatalf("setting.Setup, fail to read 'conf/app.ini': %v", err)
-	}
-	// 使用ini.Load解析读取到的配置文件内容
-	//通过viper获取数据,并解析成ini结构体
-	cfg, err = ini.Load(viper.ConfigFileUsed())
+	cfg, err = ini.Load(*configFile)
 	if err != nil {
 		log.Fatalf("setting.Setup, fail to parse 'conf/app.ini': %v", err)
 	}
