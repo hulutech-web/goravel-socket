@@ -24,4 +24,7 @@ func (receiver *ServiceProvider) Register(app foundation.Application) {
 func (receiver *ServiceProvider) Boot(app foundation.Application) {
 	routers.Init()
 	go servers.WriteMessage()
+	app.Publishes("github.com/hulutech-web/goravel-socket", map[string]string{
+		"README.md": app.ConfigPath("socket.md"),
+	})
 }
