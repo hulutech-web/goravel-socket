@@ -45,18 +45,12 @@ go servers.Manager.Start()
 
 3、绑定客户端到分组（房间），对战双方都需要绑定，其他业务逻辑自行解析，注意需要将字符串结构为json格式
 
-### 4、集成操作
-#### 4.1、创建一个包，可以支持自己先创建，在下载到本地，也可以直接使用包管理器创建
-直接创建方式
+### 4、发布使用手册资源socket.md
+#### 4.1、通过命令方式查看使用手册
 ```go
-go run . artisan make:package github.com/hulutech-web/goravel-socket
+go run . artisan vendor:publish --package=github.com/hulutech-web/goravel-socket
 ```
-#### 4.2、使用包
-可以下载到本地，采用覆盖到扩展包中  
-#### 4.2.1、使用包
-将扩展覆盖到扩展包中
-
-#### 4.3、路由说明，将操作交给前端，通过http方式调用socket提供的api进行与客户端通信，routers/routers.go,路由中间件自行添加，本例中使用了jwt中间件
+#### 4.2、路由说明，将操作交给前端，通过http方式调用socket提供的api进行与客户端通信，routers/routers.go,路由中间件自行添加，默认使用jwt中间件
 ```go
 facades.Route().Prefix("/api").Middleware(Jwt()).Group(func(router route.Router) {
     registerController := register.NewRegisterController()
@@ -78,14 +72,14 @@ facades.Route().Prefix("/api").Middleware(Jwt()).Group(func(router route.Router)
     router.Post("/get_all_groups", getAllGroupHandler.Run) //获取所有分组
 	})
 ```
-#### 4.4、前端API接口提交规范(数据结构)
-##### 4.4.1、注册大区
+#### 4.3、前端API接口提交规范(数据结构)
+##### 4.3.1、注册大区
 ```go
 type inputData struct {
 SystemId string `json:"systemId" form:"systemId" validate:"required"`
 }
 ```
-##### 4.4.2、绑定分组
+##### 4.3.2、绑定分组
 ```go
 type inputData struct {
 	ClientId  string `json:"clientId" validate:"required"`
@@ -94,7 +88,7 @@ type inputData struct {
 	Extend    string `json:"extend"` // 拓展字段，方便业务存储数据
 }
 ```
-##### 4.4.3、获取分组
+##### 4.3.3、获取分组
 ```go
 type inputData struct {
     ClientId string `json:"clientId" validate:"required"`
@@ -102,7 +96,7 @@ type inputData struct {
     Extend   string `json:"extend"` // 拓展字段，方便业务存储数据
 }
 ```
-##### 4.4.4、获取在线用户列表
+##### 4.3.4、获取在线用户列表
 ```go
 type inputData struct {
 	GroupName string      `json:"groupName" validate:"required"`
@@ -112,7 +106,7 @@ type inputData struct {
 }
 
 ```
-##### 4.4.5、发送消息给指定的客户端
+##### 4.3.5、发送消息给指定的客户端
 ```go
 type inputData struct {
 	ClientId   string `json:"clientId" validate:"required"`
@@ -122,7 +116,7 @@ type inputData struct {
 	Data       string `json:"data"`
 }
 ```
-##### 4.4.6、发送消息给指定的多个客户端
+##### 4.3.6、发送消息给指定的多个客户端
 ```go
 type inputData struct {
 	ClientIds  []string `json:"clientIds" validate:"required"`
@@ -132,7 +126,7 @@ type inputData struct {
 	Data       string   `json:"data"`
 }
 ```
-##### 4.4.7、发送消息给指定的分组
+##### 4.3.7、发送消息给指定的分组
 ```go
 type inputData struct {
 	SendUserId string `json:"sendUserId"`
@@ -142,7 +136,7 @@ type inputData struct {
 	Data       string `json:"data"`
 }
 ```
-##### 4.4.8、关闭客户端
+##### 4.3.8、关闭客户端
 ```go
 type inputData struct {
 	ClientId string `json:"clientId" validate:"required"`
@@ -150,5 +144,3 @@ type inputData struct {
 ```
 ### 5、使用场景
 聊天室、对战游戏、直播间、在线教育、在线会议、在线答题、在线考试、在线投票、在线抢答、在线抽奖、在线问卷、在线调查、在线评选、在线选举、在线投票等实时通信场景。
-### 6、版权说明
-代码中借鉴了其他作者的代码，其包含的代码版权归原作者所有，如有侵权，请联系作者删除
