@@ -36,7 +36,7 @@ var cfg *ini.File
 func Setup() {
 	var err error
 	viper.SetConfigName("app")
-	viper.AddConfigPath("../config")
+	viper.AddConfigPath("github.com/goravel-socket/config")
 	viper.SetConfigType("ini")
 	if err = viper.ReadInConfig(); err != nil {
 		log.Fatalf("setting.Setup, fail to read 'conf/app.ini': %v", err)
