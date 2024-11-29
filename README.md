@@ -4,8 +4,9 @@
 </p>
 
 # Socket[详情](https://github.com/hulutech-web/goravel-socket)
+# 案例教程[教程](https://github.com/hulutech-web/goravel-socket/blob/master/example.md)
 ### 介绍
-[goravel](https://www.goravel.dev/)框架推荐的websocket扩展包，您的Star是我前进的动力！！！💪  [链接](https://www.goravel.dev/zh/prologue/packages.html)  
+[goravel](https://www.goravel.dev/)框架推荐的高性能websocket扩展包，您的Star是我前进的动力！！！💪  [链接](https://www.goravel.dev/zh/prologue/packages.html)  
 - 扩展包提供了通用的websocket整体解决方案，适合多场景，go语言的高性能特性，保证了该扩展的高效与性能。  
 - 本扩展旨在快速地在goravel框架中集成使用，通过简单的配置即可搭建出性能强劲，功能丰富的即时通信场景。  
 - 扩展提供了方便的websocket常用功能，包含注册systemId（系统id）,绑定clientId（客户端ID),分组(客户端分组)，发送消息到指定分组，发送消息给客户端等，发送消息到系统,消息中的业务数据开发者按需添加即可；
@@ -143,4 +144,5 @@ type inputData struct {
 }
 ```
 ### 5、使用场景
-聊天室、对战游戏、直播间、在线教育、在线会议、在线答题、在线考试、在线投票、在线抢答、在线抽奖、在线问卷、在线调查、在线评选、在线选举、在线投票等实时通信场景。
+聊天室、对战游戏、直播间、在线教育、在线会议、在线答题、在线考试、在线投票、在线抢答、在线抽奖、在线问卷、在线调查、在线评选、在线选举、在线投票等实时通信场景，可参考物联网服务MQTT
+[教程](https://github.com/hulutech-web/goravel-socket/blob/master/example.md)。
